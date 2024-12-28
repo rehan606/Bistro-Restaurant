@@ -3,6 +3,7 @@ import Banner from './Banner';
 import Category from './Category';
 import Service from './Service';
 import Menu from './Menu';
+import Featured from './Featured';
 
 const Home = () => {
     return (
@@ -13,11 +14,14 @@ const Home = () => {
             <section className='w-11/12 mx-auto'>
                 <Category></Category>
             </section>
-            <section className='w-11/12 mx-auto py-20'>
+            <section className='w-11/12 mx-auto mt-20'>
                 <Service></Service>
             </section>
-            <section className='w-11/12 mx-auto py-20'>
+            <section className='w-11/12 mx-auto mt-20 mb-20'>
                 <Menu></Menu>
+            </section>
+            <section className='w-11/12 mx-auto mt-20 mb-20'>
+                <Featured></Featured>
             </section>
         </div>
     );
