@@ -12,7 +12,7 @@ const MainLayout = () => {
 
         <Outlet></Outlet>
 
-        <footer className="w-11/12 mx-auto ">
+        <footer className="">
             <Footer></Footer>
         </footer>
     </div>

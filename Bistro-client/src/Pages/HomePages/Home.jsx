@@ -2,14 +2,18 @@ import React from 'react';
 import Banner from './Banner';
 import Category from './Category';
 import Service from './Service';
-import Menu from './Menu';
+import PopularMenu from './PopularMenu';
 import Featured from './Featured';
 import Testimonials from './Testimonials';
 import Recommended from './Recommended';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Home | Bistro-Resturant</title>
+            </Helmet>
             <section className='w-11/12 mx-auto'>
                 <Banner></Banner>
             </section>
@@ -20,7 +24,7 @@ const Home = () => {
                 <Service></Service>
             </section>
             <section className='w-11/12 mx-auto mt-20 mb-20'>
-                <Menu></Menu>
+                <PopularMenu></PopularMenu>
             </section>
             <section className='w-11/12 mx-auto mt-20 mb-20'>
                 <Recommended></Recommended>
