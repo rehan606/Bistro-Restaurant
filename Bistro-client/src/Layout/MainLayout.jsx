@@ -6,7 +6,7 @@ import Footer from "../Pages/CommonPages/Footer";
 const MainLayout = () => {
   return (
     <div>
-        <header className="w-11/12 mx-auto ">
+        <header className="w-11/12 mx-auto  ">
             <Navbar></Navbar>
         </header>
 

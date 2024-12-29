@@ -5,6 +5,7 @@ import Service from './Service';
 import Menu from './Menu';
 import Featured from './Featured';
 import Testimonials from './Testimonials';
+import Recommended from './Recommended';
 
 const Home = () => {
     return (
@@ -22,6 +23,9 @@ const Home = () => {
                 <Menu></Menu>
             </section>
             <section className='w-11/12 mx-auto mt-20 mb-20'>
+                <Recommended></Recommended>
+            </section>
+            <section className=' mt-20 mb-20'>
                 <Featured></Featured>
             </section>
             <section className='w-11/12 mx-auto mt-20 mb-20'>
