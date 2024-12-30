@@ -17,7 +17,7 @@ const FoodCard = ({item}) => {
                     <p>{recipe}</p>
                     <div className="card-actions justify-center">
                         <div className='flex justify-center mt-10'>
-                            <button className="bg-blue-500 hover:bg-blue-600 border-b-4 border-orange-500  text-white py-2 px-4 rounded shadow">View full Menu</button>
+                            <button className="bg-gray-500 hover:bg-gray-950 border-b-4 border-orange-500 hover:text-orange-500  text-white py-2 px-4 rounded shadow">View full Menu</button>
                         </div>
                     </div>
                 </div>
