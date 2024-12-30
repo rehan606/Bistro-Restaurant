@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuItem from '../CommonPages/MenuItem';
 import Cover from '../CommonPages/Cover';
+import { Link } from 'react-router-dom';
 
 const MenuCategory = ({items, title, img}) => {
     return (
@@ -11,7 +12,9 @@ const MenuCategory = ({items, title, img}) => {
                     items.map((item) => <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
-
+            <div className='flex justify-center mt-10'>
+                <Link to={`/order/${title}`} className="bg-blue-500 hover:bg-blue-600 border-b-4 border-orange-500  text-white py-2 px-4 rounded shadow">View full Menu</Link>
+            </div>
             
         </div>
     );
