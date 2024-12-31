@@ -5,7 +5,7 @@ import Footer from "../Pages/CommonPages/Footer";
 
 const MainLayout = () => {
   const location = useLocation()
-  const noHeaderFooter = location.pathname.includes('login')
+  const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signUp')
 
   return (
     <div>
@@ -20,7 +20,7 @@ const MainLayout = () => {
        {
         noHeaderFooter ||  <footer className="">
         <Footer></Footer>
-    </footer>
+        </footer>
        }
     </div>
   );
