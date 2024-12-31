@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha, } from 'react-simple-captcha';
 import { AuthContext } from "../../Providers/AuthProviders";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
 
@@ -42,9 +43,12 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Login | Bistro-Resturant</title>
+            </Helmet>
             <div className="hero bg-base-200 min-h-screen ">
                 <div className="hero-content flex-col lg:flex-row-reverse w-11/12 mx-auto">
-                <div className="text-center lg:text-left">
+                <div className="text-center lg:text-left w-6/12">
                     <h1 className="text-5xl font-bold">Login now!</h1>
                     <p className="py-6">
                     Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
@@ -52,7 +56,7 @@ const Login = () => {
                     et a id nisi.
                     </p>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card bg-base-100 w-full max-w-sm  shadow-2xl">
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">
