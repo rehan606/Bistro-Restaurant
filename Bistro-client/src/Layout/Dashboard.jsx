@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { FaHome, FaShoppingCart } from 'react-icons/fa';
 import { FaCalendar, FaComment, FaGear, FaList, FaOutdent, FaPersonRifle, FaUser, FaWallet } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router-dom';
+import useCart from '../Hooks/useCart';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [cart] = useCart()
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -21,7 +23,7 @@ const Dashboard = () => {
             
             <li className='flex items-center gap-3'>
                 <FaShoppingCart></FaShoppingCart>
-              <Link to="/dashboard/cart" className="block w-full p-2 rounded hover:bg-blue-700">Cart</Link>
+              <Link to="/dashboard/cart" className="block w-full p-2 rounded hover:bg-blue-700">Cart  ({cart.length})</Link>
             </li>
            
             <li className='flex items-center gap-3'>
@@ -86,7 +88,7 @@ const Dashboard = () => {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 overflow-y-scroll">
           <h2 className="text-2xl font-bold text-blue-900">Welcome to the Dashboard</h2>
           <p className="mt-4 text-gray-700">
             This is your responsive dashboard layout. Use the sidebar to navigate
