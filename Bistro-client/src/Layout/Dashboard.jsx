@@ -44,7 +44,7 @@ const Dashboard = () => {
               <Link to="/dashboard/booking" className="block w-full p-2 rounded hover:bg-blue-700">My Bookings</Link>
             </li>
 
-            <div className='divider outline-white'></div>
+            <div className='divider divider-gray-100'></div>
 
             <li className='flex items-center gap-3 '>
                 <FaHome></FaHome>
