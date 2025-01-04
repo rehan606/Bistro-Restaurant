@@ -4,12 +4,16 @@ import { useForm } from "react-hook-form"
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { FaGoogle } from "react-icons/fa";
+import SocialLogin from "../../Components/SocialLogin";
 
 
 const SignUp = () => {
     const {register, handleSubmit, reset, watch, formState: { errors }, } = useForm()
     const {createUser, updateUserProfile} = useContext(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     const onSubmit = (data) => {
         console.log(data)
@@ -19,19 +23,28 @@ const SignUp = () => {
             console.log(loggedUser);
             updateUserProfile(data.name, data.photoURL)
             .then(() => {
-                reset()
 
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Register Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate('/')
-            })
-            
-            
+                // create user entry in the database
+                const userInfo = {
+                    name: data.name,
+                    email: data.email,
+                }
+                axiosPublic.post('/users', userInfo)
+                .then(res => {
+                    if(res.data.insertedId){
+                        reset()
+
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Register Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/')
+                    }
+                })
+            })    
         })
     }
     
@@ -52,7 +65,7 @@ const SignUp = () => {
                     et a id nisi.
                     </p>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm  shadow-2xl">
+                <div className="card bg-base-100 w-full max-w-sm  shadow-2xl p-4">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -75,7 +88,7 @@ const SignUp = () => {
                             </label>
                             <input
                             type="text"
-                            {...register("photoURL", { required: true })}
+                            {...register("photoURL", { required: false })}
                             name="photo"
                             placeholder="Enter PhotoURL"
                             className="input input-bordered"
@@ -126,6 +139,11 @@ const SignUp = () => {
                         </div>
                     </form>
                     <p className='text-center pb-5'> <small >Already Have an Account ? <Link to='/login' className='text-blue-500'>Login</Link> </small> </p>
+
+                    {/* Social login  */}
+                    <div>
+                        <SocialLogin />
+                    </div>
                 </div>
                 </div>
             </div>

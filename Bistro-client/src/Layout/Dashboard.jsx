@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { FaHome, FaShoppingCart } from 'react-icons/fa';
+import { FaAd, FaBook, FaHome, FaListAlt, FaShoppingCart, FaUserAltSlash, FaUsers, FaUtensils, FaUtensilSpoon } from 'react-icons/fa';
 import { FaCalendar, FaComment, FaGear, FaList, FaOutdent, FaPersonRifle, FaUser, FaWallet } from 'react-icons/fa6';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import useCart from '../Hooks/useCart';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [cart] = useCart()
+
+  const isAdmin = true;
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -20,52 +22,87 @@ const Dashboard = () => {
         <nav className="p-4">
           <ul className="space-y-4">
             
+            {
+              isAdmin ? <>
+                {/* Admin Menu Items */}
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/adminHome" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaHome></FaHome> Admin Home</NavLink>
+                </li>
+                
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/addItem" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaUtensils></FaUtensils> Add Item</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/manageItems" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaList></FaList> Manage Items</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/manageBookings" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaBook></FaBook> Manage Bookings</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/users" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaUsers></FaUsers> All Users</NavLink>
+                </li>
+              </> 
+              : 
+              
+              <>
+                {/* User Menu Items */}
+                <li className='flex items-center gap-3 '>
+                  <NavLink to="/" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaHome></FaHome> Home</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/cart" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaShoppingCart></FaShoppingCart> Cart  ({cart.length})</NavLink>
+                </li>
+              
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/reservation" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaCalendar></FaCalendar> Reservation</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/payment" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaWallet></FaWallet> Payment History</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/review" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaComment></FaComment> Add Review</NavLink>
+                </li>
+
+                <li className='flex items-center gap-3'>
+                  <NavLink to="/dashboard/booking" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaList></FaList> My Bookings</NavLink>
+                </li>
+              </>
+            }
+
+
+            {/* Profile Settings  */}
+            <div className=''><hr /></div>
+
             
-            <li className='flex items-center gap-3'>
-                <FaShoppingCart></FaShoppingCart>
-              <Link to="/dashboard/cart" className="block w-full p-2 rounded hover:bg-blue-700">Cart  ({cart.length})</Link>
-            </li>
-           
-            <li className='flex items-center gap-3'>
-                <FaCalendar></FaCalendar>
-              <Link to="/dashboard/reservation" className="block w-full p-2 rounded hover:bg-blue-700">Reservation</Link>
-            </li>
 
             <li className='flex items-center gap-3'>
-                <FaWallet></FaWallet>
-              <Link to="/dashboard/payment" className="block w-full p-2 rounded hover:bg-blue-700">Payment History</Link>
+              <NavLink to="/dashboard/profile" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+              <FaUser></FaUser> Profile </NavLink>
+            </li>
+
+            <li className='flex items-center  gap-3'>
+              <NavLink to="/dashboard/settings" className=" w-full p-2 flex items-center gap-4 rounded hover:bg-blue-700">  <FaGear></FaGear> Settings</NavLink>
             </li>
 
             <li className='flex items-center gap-3'>
-                <FaComment></FaComment>
-              <Link to="/dashboard/review" className="block w-full p-2 rounded hover:bg-blue-700">Add Review</Link>
-            </li>
-
-            <li className='flex items-center gap-3'>
-                <FaList></FaList>
-              <Link to="/dashboard/booking" className="block w-full p-2 rounded hover:bg-blue-700">My Bookings</Link>
-            </li>
-
-            <div className='divider divider-gray-100'></div>
-
-            <li className='flex items-center gap-3 '>
-                <FaHome></FaHome>
-              <Link to="/" className="block w-full p-2 rounded hover:bg-blue-700">Home</Link>
-            </li>
-
-            <li className='flex items-center gap-3'>
-                <FaUser></FaUser>
-              <Link to="/dashboard/profile" className="block w-full p-2 rounded hover:bg-blue-700">Profile</Link>
-            </li>
-
-            <li className='flex items-center gap-3'>
-                <FaGear></FaGear>
-              <Link to="/dashboard/settings" className="block w-full p-2 rounded hover:bg-blue-700">Settings</Link>
-            </li>
-
-            <li className='flex items-center gap-3'>
-                <FaOutdent></FaOutdent>
-              <Link to="/dashboard/cart" className="block w-full p-2 rounded hover:bg-blue-700">Logout</Link>
+              <NavLink to="/dashboard/cart" className=" w-full p-2 flex items-center gap-4 rounded hover:bg-blue-700"> <FaOutdent></FaOutdent> Logout</NavLink>
             </li>
             
             
