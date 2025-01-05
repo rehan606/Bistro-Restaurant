@@ -12,6 +12,7 @@ import Secrate from "../Pages/Authentication/Secrate";
 import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/DashboardPages/Cart";
+import AllUsers from "../Pages/DashboardPages/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +54,12 @@ export const router = createBrowserRouter([
                 path: 'cart',
                 element: <Cart></Cart>
             },
+
+            // Admin routes 
+            {
+                path: 'users',
+                element: <AllUsers></AllUsers>
+            }
         ]
     }
 ]);
