@@ -12,7 +12,9 @@ import Secrate from "../Pages/Authentication/Secrate";
 import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/DashboardPages/Cart";
-import AllUsers from "../Pages/DashboardPages/AllUsers";
+import AllUsers from "../Pages/DashboardPages/Admin/AllUsers";
+import AddItem from "../Pages/DashboardPages/Admin/AddItem";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -58,7 +60,11 @@ export const router = createBrowserRouter([
             // Admin routes 
             {
                 path: 'users',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute> <AllUsers></AllUsers> </AdminRoute>,
+            },
+            {
+                path: 'addItem',
+                element: <AdminRoute> <AddItem></AddItem> </AdminRoute>
             }
         ]
     }
