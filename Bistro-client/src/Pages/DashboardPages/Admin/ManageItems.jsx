@@ -4,6 +4,7 @@ import useMenu from '../../../Hooks/useMenu';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const ManageItems = () => {
     const [menu, loading, refetch] = useMenu()
@@ -79,11 +80,11 @@ const ManageItems = () => {
                                         $ {item.price}
                                     </td>
         
-                                    {/* <td>
-                                        {user.role === 'admin' ? 'Admin' : <button onClick={()=> handleMakeAdmin(user)} className="btn bg-blue-800 text-white hover:bg-black btn-md text-lg"> <FaUsers></FaUsers> </button>}
-                                    </td> */}
+                                    
                                     <th>
-                                        <button onClick={()=> handleDeleteUser(item)} className="btn bg-green-400 text-white hover:bg-black btn-md text-lg"> <FaEdit></FaEdit> </button>
+                                        <Link to={`/dashboard/updateItem/${item._id}`}> 
+                                            <button  className="btn bg-green-400 text-white hover:bg-black btn-md text-lg"> <FaEdit></FaEdit> </button>
+                                        </Link>
                                     </th>
                                     <th>
                                         <button onClick={()=> handleDeleteUser(item)} className="btn bg-red-600 text-white hover:bg-black btn-md text-lg"> <FaTrashAlt></FaTrashAlt> </button>
