@@ -34,46 +34,8 @@ async function run() {
     const cartCollection = client.db('bistroDB').collection('carts')
     const userCollection = client.db('bistroDB').collection('users')
 
+  
     
-
-    app.get('/menu', async(req, res) =>{
-        const result = await menuCollection.find().toArray()
-        res.send(result)
-    })
-
-    // Post data client to database 
-    app.post('/menu', async(req, res)=>{
-      const item = req.body 
-      const result = await menuCollection.insertOne(item)
-      res.send(result)
-    })
-
-    app.get('/reviews', async(req, res) => {
-        const result = await reviewCollection.find().toArray()
-        res.send(result)
-    })
-
-    // Cards collection
-    app.post('/carts', async(req, res) => {
-        const cartItem = req.body 
-        const result = await cartCollection.insertOne(cartItem);
-        res.send(result)
-    })
-
-    app.get('/carts', async(req, res) => {
-      const email = req.query.email;
-      const query = {email: email}
-      const result = await cartCollection.find(query).toArray()
-      res.send(result)
-    })
-
-    // Delete 
-    app.delete('/carts/:id', async(req, res) => {
-      const id = req.params.id
-      const query = {_id: new ObjectId(id)}
-      const result = await cartCollection.deleteOne(query)
-      res.send(result)
-    })
 
     //save User 
     app.post('/users', async(req, res) => {
@@ -165,6 +127,57 @@ async function run() {
       }
       res.send({admin});
 
+    })
+
+ 
+    //================== Database management
+
+    // Post data client to database 
+    app.post('/menu', verifyToken, verifyAdmin, async(req, res)=>{
+      const item = req.body 
+      const result = await menuCollection.insertOne(item)
+      res.send(result)
+    })
+
+    // Geta menu data from Database
+    app.get('/menu', async(req, res) =>{
+      const result = await menuCollection.find().toArray()
+      res.send(result)
+    })
+
+    app.get('/reviews', async(req, res) => {
+        const result = await reviewCollection.find().toArray()
+        res.send(result)
+    })
+
+    // Cards collection
+    app.post('/carts', async(req, res) => {
+        const cartItem = req.body 
+        const result = await cartCollection.insertOne(cartItem);
+        res.send(result)
+    })
+
+    app.get('/carts', async(req, res) => {
+      const email = req.query.email;
+      const query = {email: email}
+      const result = await cartCollection.find(query).toArray()
+      res.send(result)
+    })
+
+    // Delete 
+    app.delete('/carts/:id', async(req, res) => {
+      const id = req.params.id
+      const query = {_id: new ObjectId(id)}
+      const result = await cartCollection.deleteOne(query)
+      res.send(result)
+    })
+
+    // Delete Food Item 
+    app.delete('/menu/:id',  verifyToken, verifyAdmin, async(req, res)=> {
+      const id = req.params.id 
+      const query = {_id: new ObjectId(id)}
+      const result = await menuCollection.deleteOne(query)
+      res.send(result)
     })
 
 
