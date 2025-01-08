@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {  FaBook, FaHome,  FaShoppingCart,  FaUsers, FaUtensils, } from 'react-icons/fa';
 import { FaCalendar, FaComment, FaGear, FaList, FaOutdent,  FaUser, FaWallet } from 'react-icons/fa6';
-import {  NavLink, Outlet } from 'react-router-dom';
+import {  Link, NavLink, Outlet } from 'react-router-dom';
 import useCart from '../Hooks/useCart';
 import useAdmin from '../Hooks/useAdmin';
 
@@ -19,7 +19,8 @@ const Dashboard = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-4 text-xl font-bold border-b border-blue-700">Dashboard</div>
+        <div className="p-4 text-xl font-bold border-b border-blue-700">Dashboard  </div>
+        <div className='text-center py-4 bg-white text-blue-800'><Link to='/'> Home Page</Link></div>
         <nav className="p-4">
           <ul className="space-y-4">
             

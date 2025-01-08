@@ -3,6 +3,7 @@ import useCart from "../../Hooks/useCart";
 import { IoTrashBin } from "react-icons/io5";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -41,9 +42,13 @@ const Cart = () => {
         <div className="flex justify-between items-center bg-white pl-4 py-1 rounded-lg">
             <h2 className="text-lg font-semibold">Items: {cart.length} </h2>
             <h2 className="text-lg font-semibold">Total Price: {totalPrice} </h2>
-            <button className="btn px-10 bg-blue-800 text-white hover:bg-black ">
-            Payment
-            </button>
+            { cart.length ?  <Link to='/dashboard/payment'>
+                <button className="btn px-10 bg-blue-800 text-white hover:bg-black ">
+                Payment
+                </button> 
+            </Link> :  <button disabled className="btn px-10 bg-blue-800 text-white hover:bg-black ">
+                Payment
+                </button> }
         </div>
 
         {/* Table  */}
