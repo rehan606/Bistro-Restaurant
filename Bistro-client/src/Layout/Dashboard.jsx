@@ -72,7 +72,7 @@ const Dashboard = () => {
                 </li>
 
                 <li className='flex items-center gap-3'>
-                  <NavLink to="/dashboard/payment" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <NavLink to="/dashboard/paymentHistory" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
                   <FaWallet></FaWallet> Payment History</NavLink>
                 </li>
 
@@ -82,8 +82,8 @@ const Dashboard = () => {
                 </li>
 
                 <li className='flex items-center gap-3'>
-                  <NavLink to="/dashboard/booking" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
-                  <FaList></FaList> My Bookings</NavLink>
+                  <NavLink to="/dashboard/myBooking" className="flex items-center gap-4 w-full p-2 rounded hover:bg-blue-700">
+                  <FaList></FaList>My Booking</NavLink>
                 </li>
               </>
             }

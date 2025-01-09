@@ -225,6 +225,7 @@ async function run() {
       })
     })
 
+    // Save Payment in Database
     app.post('/payments', async(req, res) =>{
       const payment = req.body
       const paymentResult = await paymentCollection.insertOne(payment).toArray()
@@ -235,6 +236,15 @@ async function run() {
       res.send({paymentResult, deleteCart})
     })
 
+    // Display payment history in Ui 
+    app.get('/payments/:email', verifyToken,  async(req, res) => {
+      const query = {email: req.params.email}
+      if(req.params.email !== req.decoded.email){
+        return res.status(403).send({message: 'forbidden access'});
+      }
+      const result = await paymentCollection.find(query).toArray()
+      res.send(result)
+    })
 
 
 
